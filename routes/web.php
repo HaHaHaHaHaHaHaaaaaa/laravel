@@ -10,15 +10,27 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use Illuminate\Support\Facades\DB;
-use App\User_php;
 
 Route::get('/', function () {
     
     return view('welcome');
 });
+Route::get('/login/test','Auth\LoginController@getLogin');
+Route::post('/login/test','Auth\LoginController@postLogin');
 
-Route::get('/user', function () {
+
+
+
+
+
+
+
+
+/* 
+use Illuminate\Support\Facades\DB;
+use App\models\User_php;
+use App\models\Users; 
+ Route::get('/user', function () {
      $users=DB::table('user')->get();
      $arr=[];
     foreach ($users as $key => $value) {
@@ -35,16 +47,4 @@ Route::get('/test', function () {
         array_push($arr, $value);
     }
     return view('test')->with('ct', $arr);
-});
-
-
-
-
-
-Route::get('/model', function () {
-    $user= App\User_php::all();
-    foreach ($user as $obj) {
-        echo $obj->username;
-        echo $obj->password;
-    }
-});
+}); */

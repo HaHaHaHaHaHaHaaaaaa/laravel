@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Input;
+use Auth;
 
 class LoginController extends Controller
 {
@@ -25,15 +27,37 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+   /*  protected $redirectTo = '/home'; */
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
+    /* public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    } */
+
+    public function getLogin()
+    {
+        if (Auth::check()) {
+            return view('welcom',['psd'=>$psd]);
+        }
+        return view('login');
+    }
+    
+
+    public function postLogin()
+    {
+        $psd= Input::get('password');
+        $user=Input::get('username');
+        
+        if (Auth::attempt(['username' => $user, 'password' => $psd])) {
+            // 认证通过...
+            echo "ok";
+        }else{
+            echo 'error';
+        }
     }
 }
