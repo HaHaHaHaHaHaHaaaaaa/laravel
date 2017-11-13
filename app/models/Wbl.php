@@ -3,8 +3,10 @@
 namespace App\models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Wbl extends Model
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+class Wbl extends Authenticatable
 {
     //
+    protected $table='wbl';
 }

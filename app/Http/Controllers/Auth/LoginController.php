@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Input;
 use Auth;
-
+use Validator;
+use Eloquent;
+use Hash;
 class LoginController extends Controller
 {
     /*
@@ -42,7 +44,7 @@ class LoginController extends Controller
     public function getLogin()
     {
         if (Auth::check()) {
-            return view('welcom',['psd'=>$psd]);
+            return view('welcom', ['psd'=>$psd]);
         }
         return view('login');
     }
@@ -52,11 +54,17 @@ class LoginController extends Controller
     {
         $psd= Input::get('password');
         $user=Input::get('username');
-        
-        if (Auth::attempt(['username' => $user, 'password' => $psd])) {
+        /* $rules = array(
+            'username' => 'Required',
+            'password' => 'Required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules); */
+
+        if (Auth::attempt(['username' => $user, 'password' => $psd],false)) {
             // 认证通过...
             echo "ok";
-        }else{
+        } else {
             echo 'error';
         }
     }

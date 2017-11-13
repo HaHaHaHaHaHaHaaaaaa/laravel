@@ -67,8 +67,7 @@ return [
     'providers' => [
         'user' => [
             'driver' => 'eloquent',
-            'model' => App\models\User::class,
-            
+            'model' => App\models\Wbl::class,
         ],
 
         // 'users' => [
@@ -95,7 +94,7 @@ return [
     'passwords' => [
         'user' => [
             'provider' => 'user',
-            'table' => 'user',
+            'table' => 'wbl',
             'expire' => 60,
         ],
     ],
