@@ -9,6 +9,7 @@ use Auth;
 use Validator;
 use Eloquent;
 use Hash;
+use Route;
 class LoginController extends Controller
 {
     /*
@@ -29,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/welcome';
 
     /**
      * Create a new controller instance.
@@ -44,7 +45,7 @@ class LoginController extends Controller
     public function getLogin()
     {
         if (Auth::check()) {
-            return view('welcome', ['psd'=>$psd]);
+            return view('welcome');
         }
         return view('login');
     }
@@ -63,6 +64,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['username' => $user, 'password' => $psd])) {
             // 认证通过...
+          
             return view('welcome');
         
         } else {
