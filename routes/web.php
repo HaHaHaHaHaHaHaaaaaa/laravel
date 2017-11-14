@@ -20,7 +20,9 @@ Route::get('/', function () {
 Route::get('/login','Auth\LoginController@getLogin');
 Route::post('/login','Auth\LoginController@postLogin');
 /* Route::post('/reg','Auth\RegisterController@create'); */
-
+Route::get('/home',function(){
+    return view('home');
+});
 
 
 
