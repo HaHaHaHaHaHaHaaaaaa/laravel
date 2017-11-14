@@ -29,22 +29,22 @@ class LoginController extends Controller
      *
      * @var string
      */
-   /*  protected $redirectTo = '/home'; */
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    /* public function __construct()
+    public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    } */
+    }
 
     public function getLogin()
     {
         if (Auth::check()) {
-            return view('welcom', ['psd'=>$psd]);
+            return view('welcome', ['psd'=>$psd]);
         }
         return view('login');
     }
@@ -54,16 +54,17 @@ class LoginController extends Controller
     {
         $psd= Input::get('password');
         $user=Input::get('username');
-        /* $rules = array(
+        $rules = array(
             'username' => 'Required',
             'password' => 'Required'
         );
 
-        $validator = Validator::make(Input::all(), $rules); */
+        $validator = Validator::make(Input::all(), $rules);
 
-        if (Auth::attempt(['username' => $user, 'password' => $psd],false)) {
+        if (Auth::attempt(['username' => $user, 'password' => $psd])) {
             // 认证通过...
-            echo "ok";
+            return view('welcome');
+        
         } else {
             echo 'error';
         }

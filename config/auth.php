@@ -67,13 +67,13 @@ return [
     'providers' => [
         'user' => [
             'driver' => 'eloquent',
-            'model' => App\models\Wbl::class,
+            'model' => App\models\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        /* 'user' => [
+            'driver' => 'database',
+            'table' => 'user',
+        ], */
     ],
 
     /*
@@ -94,7 +94,7 @@ return [
     'passwords' => [
         'user' => [
             'provider' => 'user',
-            'table' => 'wbl',
+            'table' => 'password_reminders',
             'expire' => 60,
         ],
     ],
