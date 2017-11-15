@@ -12,28 +12,31 @@
 */
 use App\models\Menus;
 use Illuminate\Support\Facades\DB;
+
 Route::get('/', function () {
     
     return view('welcome');
 });
 
-Route::get('/login','Auth\LoginController@getLogin');
-Route::post('/login','Auth\LoginController@postLogin');
+Route::get('/login', 'Auth\LoginController@getLogin');
+Route::post('/login', 'Auth\LoginController@postLogin');
 /* Route::post('/reg','Auth\RegisterController@create'); */
-Route::get('/home',function(){
+Route::get('/home', function () {
     return view('home');
 });
 
 
 
-Route::get('/menus',function(){
+Route::get('/menus', function () {
     /* $Menus=new Menus;
     $Menus->name='购物';
     $Menus->childid=3;
     $Menus->save(); */
-  /*   $data= DB::table('menus')->join('childmenus','childmenus.menus_id','=','menus.id')->get(); */
+    $data= DB::table('menus')->join('childmenus', 'childmenus.menus_id', '=', 'menus.id')->get();
     $data1=Menus::all();
-    return $data1;
+    $data2=DB::table('menus')->leftJoin('childmenus', 'childmenus.menus_id', '=', 'menus.id')->orderBy('id', 'desc')->get();
+    
+    return $data2;
 });
 
 
