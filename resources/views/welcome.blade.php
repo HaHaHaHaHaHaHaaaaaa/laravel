@@ -63,6 +63,10 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        @section('body_script')
+            
+        @show
     </head>
     <body>
         <div class="flex-center position-ref full-height">
@@ -88,7 +92,12 @@
                     <a href="https://laravel-news.com">News</a>
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
+                    @yield('name_w')
                 </div>
+
+                @section('body_w')
+                welcome66666666666666
+                @show
             </div>
         </div>
     </body>
