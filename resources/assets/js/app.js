@@ -1,4 +1,5 @@
 
+
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -6,7 +7,8 @@
  */
 
 require('./bootstrap');
-
+import axios from 'axios';
+import ExampleComponent from './components/ExampleComponent.vue'
 window.Vue = require('vue');
 
 /**
@@ -17,6 +19,11 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
+
+axios.get('/menus').then(rs=>{
+    console.log(rs)
+});
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    render:h=>h(ExampleComponent)
 });
